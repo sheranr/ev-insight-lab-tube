@@ -236,11 +236,7 @@
     <string name="ev_car_notice">For parked viewing and passengers. While the car is moving, the picture on this screen switches off and audio carries on. Video comes back after the car has been stopped for a minute.</string>
     <string name="ev_car_notice_ok">OK</string>
     <string name="ev_welcome_title">Welcome to v%1$s</string>
-    <string name="ev_welcome_message">• YouTube on your Android Auto screen while parked.
-• While the car is moving, the car screen goes audio-only automatically. This uses your phone's location to tell when the car is moving. Location stays on the phone and is not sent anywhere.
-• Updates arrive inside the app. You'll be asked once to allow it to install them.
-
-On the next screen, choose "While using the app".</string>
+    <string name="ev_welcome_message">• YouTube on your Android Auto screen while parked.\n• While the car is moving, the car screen goes audio-only automatically. This uses your phone\'s location to tell when the car is moving. Location stays on the phone and is not sent anywhere.\n• Updates arrive inside the app. You\'ll be asked once to allow it to install them.\n\nOn the next screen, choose \"While using the app\".</string>
     <string name="ev_welcome_allow">Continue</string>
     <string name="ev_menu_hide_picture">Hide picture (audio keeps playing)</string>
     <string name="ev_menu_show_picture">Show picture again</string>
@@ -248,21 +244,9 @@ On the next screen, choose "While using the app".</string>
     <string name="ev_menu_share">Share download link</string>
     <string name="ev_menu_about">About and safety</string>
     <string name="ev_share_text">Get EV Insight Lab -Tube for Android Auto: %1$s</string>
-    <string name="ev_about_message">YouTube for the Android Auto screen, for parked use and passengers.
-
-While the car is moving, the car screen shows no picture. This is detected with the phone's GPS: it is a safety aid, not a guarantee. The driver must never watch video while driving.
-
-Updates and download: %1$s
-Source code (GPL-3.0): %2$s
-Based on AA Browser by Kododake.</string>
+    <string name="ev_about_message">YouTube for the Android Auto screen, for parked use and passengers.\n\nWhile the car is moving, the car screen shows no picture. This is detected with the phone\'s GPS: it is a safety aid, not a guarantee. The driver must never watch video while driving.\n\nUpdates and download: %1$s\nSource code (GPL-3.0): %2$s\nBased on AA Browser by Kododake.</string>
     <string name="ev_curtain_manual">Picture hidden — audio keeps playing</string>
-    <string name="ev_curtain_moving">Driving — audio only
-
-Video comes back after the car has been stopped for a minute.</string>
-    <string name="ev_curtain_permission">Video on the car screen needs Location permission, which is used to detect when the car is moving.
-
-Tap here, or open the app on your phone and choose "While using the app".</string>
-    <string name="ev_curtain_location_off">Turn on Location on your phone to show video on the car screen.
-
-It is used to detect when the car is moving.</string>
+    <string name="ev_curtain_moving">Driving — audio only\n\nVideo comes back after the car has been stopped for a minute.</string>
+    <string name="ev_curtain_permission">Video on the car screen needs Location permission, which is used to detect when the car is moving.\n\nTap here, or open the app on your phone and choose \"While using the app\".</string>
+    <string name="ev_curtain_location_off">Turn on Location on your phone to show video on the car screen.\n\nIt is used to detect when the car is moving.</string>
 </resources>
