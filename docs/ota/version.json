@@ -1,1 +1,11 @@
-{"app":"ev-insight-lab-tube","versionCode":0,"versionName":"0","apkUrl":"","sha256":"","size":0,"notes":"","minSupportedCode":0}
+{
+  "app": "ev-insight-lab-tube",
+  "versionCode": 10,
+  "versionName": "1.0.0",
+  "apkUrl": "https://github.com/sheranr/ev-insight-lab-tube/releases/download/v1.0.0/EV-Insight-Lab-Tube.apk",
+  "sha256": "dda42c6436338cde0a40adc714e5790fb63db38d77f3c3526032ef1e93d4bf55",
+  "size": 11808486,
+  "notes": "\u2022 Car screen goes audio-only while the car is moving; video returns after a minute stopped\n\u2022 Updates now download and install from inside the app (menu \u2699 \u2192 Check for updates)\n\u2022 New \u2699 menu: hide picture, check for updates, share download link, about\n\u2022 Smaller, faster release build\n\u2022 Note: if you had test version 0.4, uninstall it once before installing this version",
+  "minSupportedCode": 0,
+  "released": "2026-11-03T18:08:00+00:00"
+}
