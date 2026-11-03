@@ -1,11 +1,14 @@
 name: Release APK
 
-# Push a tag like v1.0.1 (after bumping versionCode/versionName in app/build.gradle.kts
-# and writing release-notes.txt) and this builds the signed APK, publishes it as a
-# GitHub Release, and updates docs/ota/version.json so installed apps offer the update.
+# Raise versionCode/versionName in app/build.gradle.kts, write release-notes.txt and push
+# to main. When versionCode is higher than the one in docs/ota/version.json, this builds
+# the signed APK, tags it, publishes it as a GitHub Release and updates
+# docs/ota/version.json so installed apps offer the update. Other pushes are ignored.
 on:
   push:
-    tags: ['v*']
+    branches: [main]
+    paths: ['app/**', 'release-notes.txt', 'gradle/**', '*.gradle.kts']
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -33,19 +36,23 @@ jobs:
           echo "ANDROID_HOME=$ANDROID_HOME"
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
 
-      - name: Check tag matches app version
+      - name: Is this a new version?
         id: ver
         run: |
           NAME=$(grep -oP 'versionName = "\K[^"]+' app/build.gradle.kts)
           CODE=$(grep -oP 'versionCode = \K[0-9]+' app/build.gradle.kts)
-          TAG="${GITHUB_REF_NAME}"
+          LIVE=$(python3 -c "import json;print(json.load(open('docs/ota/version.json')).get('versionCode',0))")
           echo "name=$NAME" >> "$GITHUB_OUTPUT"
           echo "code=$CODE" >> "$GITHUB_OUTPUT"
-          if [ "v$NAME" != "$TAG" ]; then
-            echo "::error::Tag $TAG does not match versionName $NAME in app/build.gradle.kts"; exit 1
+          echo "tag=v$NAME" >> "$GITHUB_OUTPUT"
+          if [ "$CODE" -gt "$LIVE" ]; then
+            echo "release=yes" >> "$GITHUB_OUTPUT"; echo "Releasing v$NAME (code $CODE, live $LIVE)"
+          else
+            echo "release=no" >> "$GITHUB_OUTPUT"; echo "versionCode $CODE is not above live $LIVE: nothing to release"
           fi
 
       - name: Restore signing key
+        if: steps.ver.outputs.release == 'yes'
         env:
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
         run: |
@@ -54,6 +61,7 @@ jobs:
             -out "$RUNNER_TEMP/release.jks" -pass env:SIGNING_PASSWORD
 
       - name: Build signed release APK
+        if: steps.ver.outputs.release == 'yes'
         env:
           RELEASE_STORE_FILE: ${{ runner.temp }}/release.jks
           RELEASE_STORE_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
@@ -62,6 +70,7 @@ jobs:
         run: bash gradlew :app:assembleRelease --no-daemon --stacktrace 2>&1 | tee build.log; test ${PIPESTATUS[0]} -eq 0
 
       - name: Verify signature and collect APK
+        if: steps.ver.outputs.release == 'yes'
         id: apk
         run: |
           APK=$(ls app/build/outputs/apk/release/*.apk | head -1)
@@ -73,26 +82,30 @@ jobs:
           echo "size=$(stat -c%s EV-Insight-Lab-Tube.apk)" >> "$GITHUB_OUTPUT"
 
       - name: Publish GitHub Release
+        if: steps.ver.outputs.release == 'yes'
         env:
           GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.ver.outputs.tag }}
         run: |
           touch release-notes.txt
-          gh release create "$GITHUB_REF_NAME" EV-Insight-Lab-Tube.apk \
-            --title "EV Insight Lab -Tube $GITHUB_REF_NAME" \
+          gh release create "$TAG" EV-Insight-Lab-Tube.apk --target "$GITHUB_SHA" \
+            --title "EV Insight Lab -Tube $TAG" \
             --notes-file release-notes.txt --latest
 
       - name: Update OTA manifest on main
+        if: steps.ver.outputs.release == 'yes'
         env:
           NAME: ${{ steps.ver.outputs.name }}
           CODE: ${{ steps.ver.outputs.code }}
           SHA: ${{ steps.apk.outputs.sha }}
           SIZE: ${{ steps.apk.outputs.size }}
+          TAG: ${{ steps.ver.outputs.tag }}
         run: |
           git fetch origin main
           git checkout -B main origin/main
           python3 tools/write_ota.py \
             --name "$NAME" --code "$CODE" --sha256 "$SHA" --size "$SIZE" \
-            --url "https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/EV-Insight-Lab-Tube.apk" \
+            --url "https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG}/EV-Insight-Lab-Tube.apk" \
             --notes-file release-notes.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"

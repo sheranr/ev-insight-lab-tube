@@ -7,7 +7,7 @@ YouTube on the Android Auto screen, for parked use and passengers. While the car
 
 ## How updates reach people
 
-1. You push a version tag. GitHub Actions builds and signs the APK, publishes it as a GitHub Release, and rewrites `docs/ota/version.json`.
+1. You push a higher `versionCode` to `main`. GitHub Actions builds and signs the APK, publishes it as a GitHub Release, and rewrites `docs/ota/version.json`.
 2. On launch (at most every 3 hours) and from ⚙ → *Check for updates*, the app reads `version.json`. If there's a newer `versionCode`, it offers **Update now**, downloads the APK, checks its SHA-256 and installs it with Android's package installer. Settings and bookmarks are kept.
 3. The download page always serves the latest release.
 
@@ -18,9 +18,9 @@ No Play Store and no cost: GitHub Pages and Releases are free for public repos.
 1. Make the change in `app/`. Every push to `main` runs **Build check**. Failed build logs land on the `ci-logs` branch.
 2. In `app/build.gradle.kts` raise `versionCode` by 1 and set `versionName` (e.g. `11` / `1.0.1`).
 3. Write what changed in `release-notes.txt`. This is shown in the in-app update dialog.
-4. Commit, then tag and push:
+4. Commit and push to `main`. The release workflow sees the higher `versionCode` and publishes it:
    ```sh
-   git tag v1.0.1 && git push origin main v1.0.1
+   git commit -am "v1.0.1" && git push origin main
    ```
 5. About 10 minutes later the release is live and phones see the update.
 
