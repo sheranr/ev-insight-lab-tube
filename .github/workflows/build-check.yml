@@ -1,0 +1,44 @@
+name: Build check
+
+# Compiles a debug APK on every push to main that touches the app, so mistakes show up
+# before a release is tagged. The debug APK is kept for 7 days as a workflow artifact.
+on:
+  push:
+    branches: [main]
+    paths: ['app/**', 'gradle/**', '*.gradle.kts', 'gradle.properties']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v3
+      - name: Build debug APK
+        run: bash gradlew :app:assembleDebug --no-daemon --stacktrace 2>&1 | tee build.log; test ${PIPESTATUS[0]} -eq 0
+      - name: Save build log to ci-logs branch
+        if: always()
+        run: |
+          mkdir -p /tmp/logs && cp build.log /tmp/logs/build.log 2>/dev/null || echo "no log" > /tmp/logs/build.log
+          echo "${{ job.status }} ${GITHUB_SHA}" > /tmp/logs/status.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan ci-logs
+          git rm -rfq . >/dev/null 2>&1 || true
+          cp /tmp/logs/* .
+          git add build.log status.txt
+          git commit -qm "build log ${GITHUB_SHA}"
+          git push -f origin ci-logs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: debug-apk
+          path: app/build/outputs/apk/debug/*.apk
+          retention-days: 7

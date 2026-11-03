@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Get EV Insight Lab -Tube</title>
+<meta name="description" content="YouTube on your Android Auto screen while parked. Updates itself.">
+<meta name="theme-color" content="#0E1116">
+<link rel="icon" href="icon.png">
+<meta property="og:title" content="EV Insight Lab -Tube">
+<meta property="og:description" content="YouTube on your Android Auto screen while parked. Audio-only while driving. Updates itself.">
+<meta property="og:image" content="https://sheranr.github.io/ev-insight-lab-tube/icon.png">
+<style>
+:root{--ink:#101418;--muted:#5A6573;--line:#DFE4EA;--paper:#FFFFFF;--ground:#F3F5F8;--accent:#E0242B;--accent-ink:#fff;--ok:#167A47;--warn-bg:#FFF4E5;--warn-ink:#7A4A00}
+@media (prefers-color-scheme:dark){:root{--ink:#E9EDF2;--muted:#9AA6B4;--line:#262D36;--paper:#151A21;--ground:#0E1116;--warn-bg:#2B2113;--warn-ink:#F3C98B}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.hero{background:radial-gradient(120% 140% at 20% 0%,#2A3340 0%,#0E1116 70%);color:#fff;padding:40px 16px 34px;text-align:center}
+.hero img{width:104px;height:104px;border-radius:24px;box-shadow:0 14px 34px rgba(0,0,0,.45)}
+.hero h1{margin:16px 0 4px;font-size:28px;letter-spacing:-.01em}
+.hero p{margin:0 auto;color:#B9C3CF;max-width:440px}
+main{max-width:640px;margin:0 auto;padding:18px 16px 48px;display:flex;flex-direction:column;gap:14px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px}
+.card h2{margin:0 0 6px;font-size:18px}
+.muted{color:var(--muted);font-size:14px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;border-radius:12px;padding:14px 18px;margin-top:12px;font-size:17px}
+.btn.line{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:600;font-size:15px}
+.btn svg{width:20px;height:20px}
+ol,ul{margin:8px 0 0;padding-left:22px}li{margin:6px 0}
+.warn{background:var(--warn-bg);color:var(--warn-ink);border-color:transparent}
+.row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.qr{background:#fff;border-radius:12px;padding:6px;width:132px;height:132px}
+.qr img{width:120px;height:120px;display:block}
+code{background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:14px}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.feat div{border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:14px}
+.feat b{display:block;font-size:15px}
+@media (max-width:420px){.feat{grid-template-columns:1fr}}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 32px}
+footer a{color:inherit}
+</style>
+</head>
+<body>
+<div class="hero">
+  <img src="icon.png" alt="EV Insight Lab -Tube icon">
+  <h1>EV Insight Lab -Tube</h1>
+  <p>YouTube on your Android Auto screen while parked. Audio-only while driving.</p>
+</div>
+<main>
+  <div class="card">
+    <h2>Download for Android</h2>
+    <div class="muted">Version <b id="ver">…</b> · <span id="size">…</span> · Android 15 or newer · updates itself</div>
+    <a class="btn" id="dl" href="https://github.com/sheranr/ev-insight-lab-tube/releases/latest/download/EV-Insight-Lab-Tube.apk">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>
+      Download APK
+    </a>
+    <ol class="muted">
+      <li>Open the downloaded file. If Android asks, allow <b>Install unknown apps</b> for your browser, then tap <b>Install</b>.</li>
+      <li>Open the app once on the phone and choose <b>While using the app</b> for Location. It's used to switch the car screen to audio-only while moving.</li>
+      <li>Next updates arrive inside the app: tap <b>Update now</b> when asked.</li>
+    </ol>
+  </div>
+
+  <div class="card warn">
+    <h2>Had an old test version (0.4 or earlier)?</h2>
+    <div>Uninstall it first, then install this one. The old builds used a temporary key, so Android can't update them in place. You only need to do this once.</div>
+  </div>
+
+  <div class="card">
+    <h2>Show it in Android Auto</h2>
+    <ol class="muted">
+      <li>On the phone open <b>Settings → Android Auto</b> (or the Android Auto app).</li>
+      <li>Scroll down and tap <b>Version</b> 10 times, then <b>OK</b>.</li>
+      <li>Tap <b>⋮ → Developer settings</b> and tick <b>Unknown sources</b>.</li>
+      <li>Connect to the car while parked. <b>EV Insight Lab -Tube</b> appears in the car's app list. Try USB first, then wireless.</li>
+    </ol>
+    <div class="muted" style="margin-top:8px">Doesn't open? Start a navigation app like Waze first, then open it.</div>
+  </div>
+
+  <div class="card">
+    <h2>What it does</h2>
+    <div class="feat">
+      <div><b>Big car controls</b>Back, YouTube home, reload and menu on screen</div>
+      <div><b>Drive-safe screen</b>Moving: picture off, sound on. Stopped for a minute: video back</div>
+      <div><b>Self-updating</b>New versions download and install from inside the app</div>
+      <div><b>Private</b>No analytics. Location never leaves the phone</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>iPhone and CarPlay</h2>
+    <div class="muted">Not available. Apple doesn't allow outside apps to show video on CarPlay, and iPhones can't install apps from a link. On iOS 26.4 or newer, some cars can show video from AirPlay apps when parked, but only if the car maker supports it.</div>
+  </div>
+
+  <div class="card">
+    <h2>Share with others</h2>
+    <div class="row">
+      <div class="qr"><img src="qr.png" alt="QR code for this page"></div>
+      <div style="flex:1;min-width:200px">
+        <div class="muted">Scan to open this page, or send the link:</div>
+        <div style="margin-top:6px"><code>sheranr.github.io/ev-insight-lab-tube</code></div>
+        <a class="btn line" href="#" id="share">Share link</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Safety</h2>
+    <div class="muted">For passengers and parked use. The driver must never watch video while driving. The audio-only switch uses the phone's GPS. It helps, but it isn't a guarantee. Android Auto may also block the screen while the car is moving.</div>
+  </div>
+</main>
+<footer>
+  Made by Sheran Rajaguru · Based on <a href="https://github.com/kododake/AABrowser">AA Browser</a> (GPL-3.0) ·
+  <a href="https://github.com/sheranr/ev-insight-lab-tube">Source</a> ·
+  <a href="https://github.com/sheranr/ev-insight-lab-tube/releases">All versions</a>
+</footer>
+<script>
+(function(){
+  fetch('ota/version.json?t=' + Date.now(), {cache:'no-store'})
+    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(v){
+      document.getElementById('ver').textContent = v.versionName;
+      if (v.size) document.getElementById('size').textContent = (v.size/1048576).toFixed(1) + ' MB';
+      if (v.apkUrl) document.getElementById('dl').href = v.apkUrl;
+    })
+    .catch(function(){
+      document.getElementById('ver').textContent = 'latest';
+      document.getElementById('size').textContent = 'APK';
+    });
+  var share = document.getElementById('share');
+  share.addEventListener('click', function(e){
+    e.preventDefault();
+    var url = 'https://sheranr.github.io/ev-insight-lab-tube/';
+    if (navigator.share) { navigator.share({title:'EV Insight Lab -Tube', url:url}).catch(function(){}); }
+    else if (navigator.clipboard) { navigator.clipboard.writeText(url).then(function(){ share.textContent = 'Link copied'; }); }
+  });
+})();
+</script>
+</body>
+</html>

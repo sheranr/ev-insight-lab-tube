@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <FrameLayout
+        android:id="@+id/contentRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/webViewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false" />
+
+        <FrameLayout
+            android:id="@+id/startPageRoot"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/start_page_gradient">
+
+            <ImageView
+                android:id="@+id/startPageBackgroundImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                android:contentDescription="@null" />
+
+            <View
+                android:id="@+id/startPageDimOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/colorSurface"
+                android:alpha="0.12" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fullscreenContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/navigationLoadingOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/progressComposeView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:elevation="8dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/menuOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <!-- Unified M3E Frosted Glass Background Scrim -->
+        <View
+            android:id="@+id/commonScrimView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent" />
+
+        <!-- Compose Menu Overlay -->
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/menuComposeView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <!-- Compose Bookmarks Overlay -->
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/bookmarkComposeView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <!-- Compose Tabs Overlay -->
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/tabComposeView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <!-- Compose QR Code Overlay -->
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/qrCodeComposeView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <!-- Compose Version Check Overlay -->
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/versionComposeView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <!-- Compose Settings Overlay -->
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/settingsComposeView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/fabComposeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp" />
+
+    <!-- Opaque curtain blocks the picture and touch interaction without pausing WebView. -->
+    <TextView
+        android:id="@+id/evAudioCurtain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:text="@string/ev_curtain_manual"
+        android:textColor="#D0D0D0"
+        android:textSize="22sp"
+        android:padding="40dp"
+        android:lineSpacingExtra="4dp"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="20dp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/evNavigationBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="8dp"
+        android:orientation="horizontal"
+        android:elevation="24dp"
+        android:background="@android:color/transparent">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/evBackButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="4dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="‹"
+            android:textColor="#FFFFFFFF"
+            android:textSize="24sp"
+            android:background="@drawable/ev_floating_button"
+            android:backgroundTint="@null"
+            android:contentDescription="Back" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/evHomeButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="4dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="⌂"
+            android:textColor="#FFFFFFFF"
+            android:textSize="24sp"
+            android:background="@drawable/ev_floating_button"
+            android:backgroundTint="@null"
+            android:contentDescription="YouTube home" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/evReloadButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="4dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="↻"
+            android:textColor="#FFFFFFFF"
+            android:textSize="24sp"
+            android:background="@drawable/ev_floating_button"
+            android:backgroundTint="@null"
+            android:contentDescription="Reload" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/evDisplaySettingsButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="4dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="⚙"
+            android:textColor="#FFFFFFFF"
+            android:textSize="24sp"
+            android:background="@drawable/ev_floating_button"
+            android:backgroundTint="@null"
+            android:contentDescription="Display settings" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
