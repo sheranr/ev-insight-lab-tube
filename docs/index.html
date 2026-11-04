@@ -9,16 +9,17 @@
 <link rel="icon" href="icon.png">
 <meta property="og:title" content="EV Insight Lab -Tube">
 <meta property="og:description" content="YouTube on your Android Auto screen while parked. Audio-only while driving. Updates itself.">
-<meta property="og:image" content="https://sheranr.github.io/ev-insight-lab-tube/icon.png">
+<meta property="og:image" content="https://sheranr.github.io/ev-insight-lab-tube/og.jpg">
 <style>
 :root{--ink:#101418;--muted:#5A6573;--line:#DFE4EA;--paper:#FFFFFF;--ground:#F3F5F8;--accent:#E0242B;--accent-ink:#fff;--ok:#167A47;--warn-bg:#FFF4E5;--warn-ink:#7A4A00}
 @media (prefers-color-scheme:dark){:root{--ink:#E9EDF2;--muted:#9AA6B4;--line:#262D36;--paper:#151A21;--ground:#0E1116;--warn-bg:#2B2113;--warn-ink:#F3C98B}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--ground);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.hero{background:radial-gradient(120% 140% at 20% 0%,#2A3340 0%,#0E1116 70%);color:#fff;padding:40px 16px 34px;text-align:center}
-.hero img{width:104px;height:104px;border-radius:24px;box-shadow:0 14px 34px rgba(0,0,0,.45)}
+.hero{background:radial-gradient(120% 120% at 50% 30%,#0D2233 0%,#050B12 75%);color:#fff;padding:28px 16px 30px;text-align:center}
+.hero img{width:min(340px,82vw);height:auto;aspect-ratio:1;border-radius:28px;box-shadow:0 18px 44px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.06);display:block;margin:0 auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .hero h1{margin:16px 0 4px;font-size:28px;letter-spacing:-.01em}
-.hero p{margin:0 auto;color:#B9C3CF;max-width:440px}
+.hero p{margin:18px auto 0;color:#B9C3CF;max-width:440px}
 main{max-width:640px;margin:0 auto;padding:18px 16px 48px;display:flex;flex-direction:column;gap:14px}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px}
 .card h2{margin:0 0 6px;font-size:18px}
@@ -42,8 +43,8 @@ footer a{color:inherit}
 </head>
 <body>
 <div class="hero">
-  <img src="icon.png" alt="EV Insight Lab -Tube icon">
-  <h1>EV Insight Lab -Tube</h1>
+  <img src="logo.jpg" alt="EV Insight Lab Tube logo" width="340" height="340">
+  <h1 class="sr">EV Insight Lab -Tube</h1>
   <p>YouTube on your Android Auto screen while parked. Audio-only while driving.</p>
 </div>
 <main>
