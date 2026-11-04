@@ -14,4 +14,4 @@ local.properties
 *.log
 icon.png
 /test
-/tmp
+/tmp!docs/icon.png
