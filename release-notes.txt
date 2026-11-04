@@ -1,5 +1,2 @@
-• Car screen goes audio-only while the car is moving; video returns after a minute stopped
-• Updates now download and install from inside the app (menu ⚙ → Check for updates)
-• New ⚙ menu: hide picture, check for updates, share download link, about
-• Smaller, faster release build
-• Note: if you had test version 0.4, uninstall it once before installing this version
+• Fix: the app now opens in Android Auto (the icon was grey in 1.0.0)
+• While the car is moving, the car screen shows audio only; video returns after a minute stopped

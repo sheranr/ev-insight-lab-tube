@@ -36,7 +36,7 @@ To force everyone below a version to update (no "Later" button), run `tools/writ
 
 - The app uses AA Browser's unofficial Android Auto technique: users enable *Unknown sources* in Android Auto developer settings. It's not a Google-approved video app, and an Android Auto update could break it.
 - Drive-safe lock (`app/src/main/java/com/kododake/aabrowser/ev/DriveSafeMonitor.kt`): on the car screen, GPS speed ≥ 8 km/h covers the picture. It uncovers only after a fresh fix shows < 3 km/h and the car has been stopped for 60 s. With no location permission, or Location off, the car screen stays covered. The phone's own screen is never locked.
-- `distractionOptimized` is still left out (as in 0.2–0.4), so Android Auto's own driving restrictions still apply.
+- `distractionOptimized` is set (required: without it Android Auto greys out the icon). So Android Auto does not block the app while moving, and DriveSafeMonitor is the safety layer.
 - **CarPlay / iPhone:** not possible. Apple doesn't allow third-party video apps on CarPlay or installing apps from a link.
 
 ## Build locally

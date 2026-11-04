@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.1 (2026-11-04)
+- Restored `distractionOptimized` (removed in 0.2). Without it Android Auto shows the icon greyed out and will not open the app. DriveSafeMonitor covers the car screen while moving.
+
 ## 1.0.0 (2026-11-03)
 - Moved to github.com/sheranr/ev-insight-lab-tube with a download page and automatic releases.
 - Drive-safe lock: on the Android Auto screen the picture is covered while the car moves (GPS), audio continues; video returns after 60 s stopped. Fails closed without location permission or with Location off. Phone screen is never locked.
